@@ -1,3 +1,20 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+body {
+	@apply bg-background text-foreground flex h-screen flex-col items-center justify-around;
+}
+
+body > main {
+	@apply h-full w-full max-w-[1200px] grow py-[80px];
+}
+
+body > header,
+body > footer {
+	@apply grow-0;
+}
+
+body * {
+	@apply transition-all duration-500;
+}
