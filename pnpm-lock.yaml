@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      install:
+        specifier: ^0.13.0
+        version: 0.13.0
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^4.0.0
@@ -29,6 +33,9 @@ importers:
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.5.1)
+      dom:
+        specifier: link:@testing/library/dom
+        version: link:@testing/library/dom
       happy-dom:
         specifier: ^17.0.0
         version: 17.0.0
@@ -832,6 +839,10 @@ packages:
   indent-string@4.0.0:
     resolution: {integrity: sha512-EdDDZu4A2OyIK7Lr/2zG+w5jmbuk1DVBnEwREQvBzspBJkCEbRa8GxU1lghYcaGJCnRWibjDXlq779X1/y5xwg==}
     engines: {node: '>=8'}
+
+  install@0.13.0:
+    resolution: {integrity: sha512-zDml/jzr2PKU9I8J/xyZBQn8rPCAY//UOYNmR01XwNwyfhEWObo2SWfSl1+0tm1u6PhxLwDnfsT/6jB7OUxqFA==}
+    engines: {node: '>= 0.10'}
 
   is-binary-path@2.1.0:
     resolution: {integrity: sha512-ZMERYes6pDydyuGidse7OsHxtbI7WVeUEozgR/g7rd0xUimYNlvZRE/K2MgZTjWy725IfelLeVcEM97mmtRGXw==}
@@ -2174,6 +2185,8 @@ snapshots:
   import-meta-resolve@4.1.0: {}
 
   indent-string@4.0.0: {}
+
+  install@0.13.0: {}
 
   is-binary-path@2.1.0:
     dependencies:

@@ -8,15 +8,18 @@
 
 	/* Data */
 	import { menu } from '../../core/data/menu.data';
+
+    /* Variables */
+    let menuOpen = false;
 </script>
 
 <header class="Header">
-	<button class="openCloseMenuBtn" id="openMenuBtn">
+	<button class="openCloseMenuBtn" id="openMenuBtn" on:click={() => menuOpen = true}>
 		<MajesticonsMenu classes="size-12" />
 	</button>
-	<nav id="menu">
+	<nav id="menu" class={menuOpen ? "right-0" : "right-[-100%]"}>
 		<div>
-			<button class="openCloseMenuBtn" id="closeMenuBtn">
+			<button class="openCloseMenuBtn" id="closeMenuBtn" on:click={() => menuOpen = false}>
 				<MajesticonsClose classes="size-12" />
 			</button>
 		</div>
@@ -36,7 +39,7 @@
 	}
 
 	.Header button {
-		@apply lg:hidden lg:opacity-0;
+		@apply lg:hidden lg:opacity-0 lg:collapse;
 	}
 
 	.Header > nav {
