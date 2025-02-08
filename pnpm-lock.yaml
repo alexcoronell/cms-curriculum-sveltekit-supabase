@@ -33,9 +33,6 @@ importers:
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.5.1)
-      dom:
-        specifier: link:@testing/library/dom
-        version: link:@testing/library/dom
       happy-dom:
         specifier: ^17.0.0
         version: 17.0.0
