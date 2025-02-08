@@ -15,7 +15,7 @@
 
 <header class="Header">
 	<button class="openCloseMenuBtn" id="openMenuBtn" on:click={() => menuOpen = true}>
-		<MajesticonsMenu classes="size-12" />
+		<MajesticonsMenu classes="size-12 text-primary" />
 	</button>
 	<nav id="menu" class={menuOpen ? "right-0" : "right-[-100%]"}>
 		<div>
