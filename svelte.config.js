@@ -15,8 +15,8 @@ const config = {
 			'$lib': './src/lib',
 			"$components": "./src/lib/components",
 			"$data": "./src/lib/data",
-			"interfaces": "./src/core/interfaces",
-			"utils": "./src/core/utils"
+			"$interfaces": "./src/lib/core/interfaces",
+			"$utils": "./src/lib/core/utils"
 		},
 		adapter: adapter()
 	}

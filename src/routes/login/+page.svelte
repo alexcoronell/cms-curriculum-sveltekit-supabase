@@ -1,20 +1,12 @@
 <script lang="ts">
     import Layout from "../+layout.svelte";
-    import Input from "$lib/components/ui/form/Input.svelte";
+    import LoginForm from "$lib/components/forms/LoginForm.svelte";
 </script>
 
 <Layout>
     <section class="Login">
         <div class="Login__container">
-            <form>
-                <div class="Login__inputsArea">
-                    <Input />
-                <Input />
-                </div>
-                <div class="Login__buttonArea">
-                    <button>Button</button>
-                </div>
-            </form>
+            <LoginForm />
         </div>
     </section>
 </Layout>
