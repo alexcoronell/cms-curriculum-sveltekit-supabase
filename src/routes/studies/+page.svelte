@@ -1,0 +1,1 @@
+<h1>Studies Page</h1>
