@@ -12,11 +12,14 @@ const config = {
 		// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
 		// See https://svelte.dev/docs/kit/adapters for more information about adapters.
 		alias: {
-			'$lib': './src/lib',
-			"$components": "./src/lib/components",
-			"$data": "./src/lib/data",
-			"$interfaces": "./src/lib/core/interfaces",
-			"$utils": "./src/lib/core/utils"
+			$components: './src/lib/components',
+			$data: './src/lib/data',
+			$helpers: './src/lib/core/helpers',
+			$interfaces: './src/lib/core/interfaces',
+			$models: './src/lib/core/models',
+			$services: './src/lib/core/services',
+			$supabase: './src/lib/supabase',
+			$utils: './src/lib/core/utils'
 		},
 		adapter: adapter()
 	}
