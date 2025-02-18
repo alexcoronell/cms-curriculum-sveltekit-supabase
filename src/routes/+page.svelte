@@ -6,10 +6,10 @@
 	const { firstname, lastname, title, description, image } = data as Profile;
 </script>
 
-<main class="Home main">
+<main class="Home main lg:no-scrollbar">
 	<div class="Home__container">
 		<div class="Home__imageArea">
-			<img src={image} alt={`${firstname} ${lastname} data?.profile image`} />
+			<img src={image} alt={`${firstname} ${lastname} profile image`} />
 		</div>
 		<div class="Home__details">
 			<h1>{firstname} {lastname}</h1>
