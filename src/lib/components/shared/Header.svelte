@@ -1,13 +1,10 @@
 <script lang="ts">
 	/* Components */
-	import MajesticonsMenu from '../ui/icons/MajesticonsMenu.svelte';
-	import MajesticonsClose from '../ui/icons/MajesticonsClose.svelte';
-
-	/* Interfaces */
-	import type { Menu } from '../../core/interfaces/Menu';
+	import MajesticonsMenu from '$components/ui/icons/MajesticonsMenu.svelte';
+	import MajesticonsClose from '$components/ui/icons/MajesticonsClose.svelte';
 
 	/* Data */
-	import { menu } from '../../core/data/menu.data';
+	import { menu } from '$data/menu.data';
 
     /* Variables */
     let menuOpen = false;
@@ -26,7 +23,7 @@
 		<ul>
 			{#each menu as item}
 				<li>
-					<a href={item.url}>{item.title}</a>
+					<a href={item.url} on:click={() => menuOpen = false}>{item.title}</a>
 				</li>
 			{/each}
 		</ul>
