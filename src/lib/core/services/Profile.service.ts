@@ -1,7 +1,7 @@
 import { createClient } from '$supabase/supabaseClient';
 
 /* Models */
-import type { Profile } from '../models/Profile.interface';
+import type { Profile } from '$models/Profile.interface';
 
 /* Services */
 import ImagesService from './Images.service';
