@@ -6,7 +6,7 @@
 	const { firstname, lastname, title, description, image } = data as Profile;
 </script>
 
-<main class="Home main lg:no-scrollbar">
+<main class="Home main no-scrollbar">
 	<div class="Home__container">
 		<div class="Home__imageArea">
 			<img src={image} alt={`${firstname} ${lastname} profile image`} />
