@@ -12,8 +12,8 @@ class StudyService {
 			.from(this.table)
 			.select('*')
 			.order('current', { ascending: false })
-			.order('year', { ascending: false })
-			.order('month', { ascending: false });
+			.order('until', { ascending: false })
+			.order('since', { ascending: false });
 		if (error) throw new Error(error.message);
 		return data as Study[];
 	};
