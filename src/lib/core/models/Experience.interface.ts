@@ -1,3 +1,9 @@
+interface ExperienceFunctions {
+  id: string;
+  experienceId: Experience['id'];
+  functionDetail: string;
+}
+
 export interface Experience {
     id: string;
     nameBusiness: string;
@@ -6,6 +12,6 @@ export interface Experience {
     since: string;
     until: string;
     current: boolean;
-    functions?: string[];
+    functions?: ExperienceFunctions[];
   }
   
