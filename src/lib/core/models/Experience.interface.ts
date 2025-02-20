@@ -1,4 +1,4 @@
-interface ExperienceFunctions {
+export interface ExperienceFunction {
   id: string;
   experienceId: Experience['id'];
   functionDetail: string;
@@ -12,6 +12,6 @@ export interface Experience {
     since: string;
     until: string;
     current: boolean;
-    functions?: ExperienceFunctions[];
+    functions?: ExperienceFunction[];
   }
   

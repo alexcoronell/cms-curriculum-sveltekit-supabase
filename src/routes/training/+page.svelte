@@ -20,6 +20,6 @@
 
 <style>
 	.Trainings {
-		@apply grid justify-center gap-6 md:grid-cols-2 xl:grid-cols-3;
+		@apply grid justify-center gap-6 md:grid-cols-2 xl:grid-cols-3; 
 	}
 </style>

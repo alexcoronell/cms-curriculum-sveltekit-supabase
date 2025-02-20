@@ -3,15 +3,15 @@
 @import 'tailwindcss/utilities';
 
 @layer utilities {
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none !important;
-  }
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .no-scrollbar {
-    -ms-overflow-style: none !important; /* IE and Edge */
-    scrollbar-width: none !important; /* Firefox */
-  }
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	.no-scrollbar::-webkit-scrollbar {
+		display: none !important;
+	}
+	/* Hide scrollbar for IE, Edge and Firefox */
+	.no-scrollbar {
+		-ms-overflow-style: none !important; /* IE and Edge */
+		scrollbar-width: none !important; /* Firefox */
+	}
 }
 
 /***************************** Fonts *****************************/
@@ -21,44 +21,44 @@ h3,
 h4,
 h5,
 h6 {
-  @apply text-primary;
+	@apply text-primary;
 }
 h1,
 h2 {
-  @apply text-primary font-semibold text-center;
+	@apply text-center font-semibold text-primary;
 }
 
 h1 {
-  @apply text-5xl md:text-6xl lg:text-7xl;
+	@apply text-5xl md:text-6xl lg:text-7xl;
 }
 
 h2 {
-  @apply text-3xl md:text-4xl lg:text-5xl;
+	@apply text-3xl md:text-4xl lg:text-5xl;
 }
 
 h3 {
-  @apply text-2xl;
+	@apply text-2xl;
 }
 
 h4 {
-  @apply text-xl md:text-2xl lg:text-3xl;
+	@apply text-xl md:text-2xl lg:text-3xl;
 }
 
 h5 {
-  @apply text-base  md:text-xl lg:text-2xl;
+	@apply text-base md:text-xl lg:text-2xl;
 }
 
 h6 {
-  @apply text-sm  md:text-base lg:text-xl;
+	@apply text-sm md:text-base lg:text-xl;
 }
 
 p {
-  @apply text-base lg:text-lg;
+	@apply text-base lg:text-lg;
 }
 
 /***************************** Body *****************************/
 body {
-	@apply bg-background text-foreground flex h-screen flex-col items-center justify-around;
+	@apply flex h-screen flex-col items-center justify-around bg-background text-foreground;
 }
 
 main {
@@ -83,45 +83,62 @@ select,
 textarea,
 textarea:focus,
 textarea.form-control:focus button {
-  outline: none !important;
-  outline-width: 0 !important;
-  box-shadow: none !important;
-  -moz-box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  outline: 0 none !important;
+	outline: none !important;
+	outline-width: 0 !important;
+	box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+	outline: 0 none !important;
 }
 
 /***************************** Form Styles *****************************/
 .formgroup {
-	@apply relative py-1 mb-6 w-full;
-  }
-  
-  .formgroup > * {
-	@apply transition-all ease-in-out duration-100;
-  }
-  
-  .formgroup input,
-  .formgroup textarea {
-	@apply bg-transparent border border-primary/60 rounded-md px-4 py-3 text-base text-white w-full focus:border-primary;
-  }
-  
-  .formgroup span {
-	@apply absolute bg-backgroundsecondary left-4 top-5 px-2 text-xs text-primary/60;
-  }
-  
-  .formgroup input:focus + span,
-  .formgroup input:not(:placeholder-shown) + span,
-  .formgroup textarea:focus + span,
-  .formgroup textarea:not(:placeholder-shown) + span {
-	@apply top-[-0.2rem] bg-primary text-background rounded-sm;
-  }
-  
-  .formgroup input::placeholder,
-  .formgroup textarea::placeholder {
+	@apply relative mb-6 w-full py-1;
+}
+
+.formgroup > * {
+	@apply transition-all duration-100 ease-in-out;
+}
+
+.formgroup input,
+.formgroup textarea {
+	@apply w-full rounded-md border border-primary/60 bg-transparent px-4 py-3 text-base text-white focus:border-primary;
+}
+
+.formgroup span {
+	@apply absolute left-4 top-5 bg-backgroundsecondary px-2 text-xs text-primary/60;
+}
+
+.formgroup input:focus + span,
+.formgroup input:not(:placeholder-shown) + span,
+.formgroup textarea:focus + span,
+.formgroup textarea:not(:placeholder-shown) + span {
+	@apply top-[-0.2rem] rounded-sm bg-primary text-background;
+}
+
+.formgroup input::placeholder,
+.formgroup textarea::placeholder {
 	@apply text-transparent;
-  }
+}
 
-  .formgroup > .errorMessage {
-	@apply absolute text-xs text-red mt-1;
-  }
+.formgroup > .errorMessage {
+	@apply absolute mt-1 text-xs text-red;
+}
 
+/***************************** Button Styles *****************************/
+.btn {
+	@apply rounded-xl border px-8 py-2 text-lg hover:text-background;
+}
+
+.btn-primary {
+	@apply border-primary text-primary hover:bg-primary;
+}
+
+/***************************** Special Styles *****************************/
+.special-shadow {
+	box-shadow: 0 15px 15px rgba(0, 0, 0, 0.4);
+}
+
+.profileImage {
+	mask-image: linear-gradient(black 75%, transparent);
+}
