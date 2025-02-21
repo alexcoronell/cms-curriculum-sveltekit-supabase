@@ -3,7 +3,7 @@
 
     /* Components */
     import PublicPagesLayout from "$components/shared/PublicPagesLayout.svelte";
-    import ContactForm from "$components/shared/ContactForm.svelte";
+    import ContactForm from "$components/forms/ContactForm.svelte";
     import SocialMediaComponent from "$components/shared/SocialMedia.svelte";
 
     /* Models */

@@ -12,7 +12,7 @@
 
 <style>
     .btn {
-        @apply hover:shadow-md p-3 rounded-xl;
+        @apply hover:shadow-md p-3 rounded-xl border-none focus:outline-none;
     }
 
     .btn--primary {
