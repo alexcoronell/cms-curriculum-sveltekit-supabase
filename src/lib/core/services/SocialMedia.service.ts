@@ -11,7 +11,7 @@ class SocialMediaService {
 		const { data, error } = await this.supabase
 			.from(this.table)
 			.select('*')
-			.order('order', { ascending: false });
+			.order('name')
 
 		if (error) throw new Error(error.message);
 		return data as SocialMedia[];

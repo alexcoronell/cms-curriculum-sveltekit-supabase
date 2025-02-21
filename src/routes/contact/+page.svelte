@@ -1,14 +1,23 @@
 <script lang="ts">
+	import type { PageData } from './$types';
+
+    /* Components */
     import PublicPagesLayout from "$components/shared/PublicPagesLayout.svelte";
     import ContactForm from "$components/shared/ContactForm.svelte";
-    import SocialMedia from "$components/shared/SocialMedia.svelte";
+    import SocialMediaComponent from "$components/shared/SocialMedia.svelte";
+
+    /* Models */
+    import type { SocialMedia } from '$models/SocialMedia.interface';
+
+    export let data: PageData;
+    const { socialMedia } = data as { socialMedia: SocialMedia[] };
     const title = 'Contact';
 </script>
 
 <PublicPagesLayout {title}>
     <div class="Contact">
         <ContactForm />
-        <SocialMedia />
+        <SocialMediaComponent {socialMedia} />
     </div>
 </PublicPagesLayout>
 
