@@ -1,4 +1,4 @@
-import type { Menu } from '../interfaces/Menu';
+import type { Menu } from "$interfaces/Menu";
 
 export const menu: Menu[] = [
 	{

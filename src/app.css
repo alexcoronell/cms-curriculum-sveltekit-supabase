@@ -127,11 +127,15 @@ textarea.form-control:focus button {
 
 /***************************** Button Styles *****************************/
 .btn {
-	@apply rounded-xl border px-8 py-2 text-lg hover:text-background;
+	@apply rounded-xl border px-8 py-2 text-lg;
 }
 
 .btn-primary {
-	@apply border-primary text-primary hover:bg-primary;
+	@apply border-primary text-primary hover:bg-primary hover:text-background;
+}
+
+.btn-secondary {
+	@apply border-primary/60 text-primary hover:border-primary;
 }
 
 /***************************** Special Styles *****************************/
