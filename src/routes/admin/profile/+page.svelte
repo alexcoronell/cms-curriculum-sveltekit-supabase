@@ -1,5 +1,16 @@
-<section class="ProfileAdmin">
-    <div class="ProfileAdmin__container">
-        <h1>Profile Admin</h1>
-    </div>
-</section>
+<script lang="ts">
+	import type { Profile } from '$models/Profile.interface';
+	import type { PageData } from './$types';
+
+	import AdminPagesLayout from '$components/shared/AdminPagesLayout.svelte';
+	import ProfileForm from '$components/forms/ProfileForm.svelte';
+
+	export let data: PageData;
+	const profile = data as Profile;
+</script>
+
+<AdminPagesLayout title="Profile Admin">
+	<section class="ProfileAdmin">
+		<ProfileForm currentProfile={profile} />
+	</section>
+</AdminPagesLayout>

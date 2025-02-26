@@ -9,6 +9,7 @@
 	export let validator: (() => any) | undefined = undefined;
 	export let invalidField: InvalidField = { invalid: false, message: '' };
 	export let classes: string = '';
+	export let isReadOnly: boolean = false 
 
 	const classesToUse = `formgroup ${classes}`.trim();
 </script>
@@ -25,6 +26,7 @@
 			on:change={validator}
 			on:input={validator}
 			on:keyup={validator}
+			readOnly={isReadOnly}
 		/>
 		<span>{label}</span>
 	</label>

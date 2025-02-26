@@ -11,7 +11,7 @@
 
 <style>
 	.AdminPageLayout {
-		@apply flex h-full w-full flex-col items-center gap-y-6;
+		@apply flex h-full w-full flex-col items-center gap-y-6 px-6;
 	}
 
 	.AdminPageLayout__title {
