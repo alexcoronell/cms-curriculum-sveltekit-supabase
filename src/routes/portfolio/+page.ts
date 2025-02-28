@@ -7,10 +7,10 @@ export const load: PageLoad = async ({ fetch }) => {
 	const service = new WorkService();
 
 	try {
-		const works: Work[] = await service.getAll();
-		return {works};
+		const { works, count } = await service.getAll();
+		return { works, count };
 	} catch (error) {
 		console.error(error);
-		return { works: [] };
+		return { works: [], count: 0 };
 	}
 };

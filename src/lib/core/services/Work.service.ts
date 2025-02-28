@@ -12,17 +12,19 @@ class WorkService {
 	private tableBucketName = "works";
 	private service = new ImagesService();
 
-	getAll = async (): Promise<Work[]> => {
-		const { data, error } = await this.supabase
+	getAll = async (from = 0, to = 100000): Promise<{ works: Work[], count: number }> => {
+		const { data, count, error } = await this.supabase
 			.from(this.table)
-			.select('*')
-			.order('order', { ascending: false });
+			.select('*', { count: 'exact' })
+			.order('order', { ascending: false })
+			.range(from, to)
 		if (error) throw new Error(error.message);
 		const works: Promise<Work>[] = data.map(async(work) => {
 			work.image = await this.service.get(this.tableBucketName, work.image)
 			return work
 		})
-		return await Promise.all(works)
+		const dataWorks: Work[] = await Promise.all(works)
+		return { works: dataWorks, count: count as number }
 	};
 }
 
