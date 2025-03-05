@@ -1,30 +1,38 @@
 import { createClient } from '$supabase/supabaseClient';
 
+/* IBaseService Interface */
+import type { IBaseService } from '$interfaces/IBaseService.interface';
+
 /* Services */
 import ImagesService from './Images.service';
 
 /* Models */
 import type { Work } from '$models/Work.interface';
 
-class WorkService {
+class WorkService implements IBaseService<Work> {
 	private supabase = createClient();
 	private table = 'works';
-	private tableBucketName = "works";
+	private tableBucketName = 'works';
 	private service = new ImagesService();
 
-	getAll = async (from = 0, to = 100000): Promise<{ works: Work[], count: number }> => {
-		const { data, count, error } = await this.supabase
-			.from(this.table)
-			.select('*', { count: 'exact' })
-			.order('order', { ascending: false })
-			.range(from, to)
-		if (error) throw new Error(error.message);
-		const works: Promise<Work>[] = data.map(async(work) => {
-			work.image = await this.service.get(this.tableBucketName, work.image)
-			return work
-		})
-		const dataWorks: Work[] = await Promise.all(works)
-		return { works: dataWorks, count: count as number }
+	getAll = async (from?: number, to?: number) => {
+		try {
+			const { data, count, error } = await this.supabase
+				.from(this.table)
+				.select('*', { count: 'exact' })
+				.order('order', { ascending: false })
+				.range(from || 0, to || 100000);
+			if (error) throw new Error(error.message);
+			const works: Promise<Work>[] = data.map(async (work) => {
+				work.image = await this.service.get(this.tableBucketName, work.image);
+				return work;
+			});
+			const dataWorks: Work[] = await Promise.all(works);
+			return { data: dataWorks, count: count as number };
+		} catch (error) {
+			console.error(error);
+			return { data: [], count: 0, error: true, message: 'Something went wrong' };
+		}
 	};
 }
 

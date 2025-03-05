@@ -5,12 +5,6 @@ import WorkService from '$services/Work.service';
 
 export const load: PageLoad = async ({ fetch }) => {
 	const service = new WorkService();
-
-	try {
-		const { works, count } = await service.getAll();
-		return { works, count };
-	} catch (error) {
-		console.error(error);
-		return { works: [], count: 0 };
-	}
+	const { data: works, count, error, message } = await service.getAll();
+	return { works, count };
 };
