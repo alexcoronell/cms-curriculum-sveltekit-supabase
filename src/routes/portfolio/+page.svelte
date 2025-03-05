@@ -2,7 +2,7 @@
 	import type { PageData } from './$types';
 	import type { Work } from '$models/Work.interface';
 
-	import PublicPagesLayout from '$components/shared/PublicPagesLayout.svelte';
+	import PublicPagesLayout from '$components/layouts/PublicPagesLayout.svelte';
 	import WorkItem from '$components/shared/WorkItem.svelte';
 
 	export let data: PageData;

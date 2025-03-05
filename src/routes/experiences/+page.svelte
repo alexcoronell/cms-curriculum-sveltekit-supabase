@@ -2,7 +2,7 @@
 	import type { PageData } from './$types';
 	import type { Experience } from '$models/Experience.interface';
 
-	import PublicPagesLayout from '$components/shared/PublicPagesLayout.svelte';
+	import PublicPagesLayout from '$components/layouts/PublicPagesLayout.svelte';
 	import ExperienceItem from '$components/shared/ExperienceItem.svelte';
 
 	export let data: PageData;

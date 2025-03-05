@@ -2,7 +2,7 @@
 	import type { PageData } from './$types';
 	import type { Training } from '$models/Training.interface';
 
-	import PublicPagesLayout from '$components/shared/PublicPagesLayout.svelte';
+	import PublicPagesLayout from '$components/layouts/PublicPagesLayout.svelte';
 	import TrainingItem from '$components/shared/TrainingItem.svelte';
 
 	export let data: PageData;

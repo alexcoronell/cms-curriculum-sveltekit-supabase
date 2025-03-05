@@ -2,7 +2,7 @@
 	import type { Profile } from '$models/Profile.interface';
 	import type { PageData } from './$types';
 
-	import AdminPagesLayout from '$components/shared/AdminPagesLayout.svelte';
+	import AdminPagesLayout from '$components/layouts/AdminPagesLayout.svelte';
 	import ProfileForm from '$components/forms/ProfileForm.svelte';
 
 	export let data: PageData;

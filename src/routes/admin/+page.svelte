@@ -1,5 +1,5 @@
 <script>
-    import AdminPagesLayout from "$components/shared/AdminPagesLayout.svelte";
+    import AdminPagesLayout from "$components/layouts/AdminPagesLayout.svelte";
     import { adminMenu } from "$data/admin-menu.data";
 </script>
 

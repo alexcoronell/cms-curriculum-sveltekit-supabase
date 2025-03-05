@@ -2,7 +2,7 @@
 	import type { PageData } from './$types';
 
     /* Components */
-    import PublicPagesLayout from "$components/shared/PublicPagesLayout.svelte";
+    import PublicPagesLayout from "$components/layouts/PublicPagesLayout.svelte";
     import ContactForm from "$components/forms/ContactForm.svelte";
     import SocialMediaComponent from "$components/shared/SocialMedia.svelte";
 

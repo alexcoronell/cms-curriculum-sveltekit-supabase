@@ -2,7 +2,7 @@
 	import type { PageData } from './$types';
 	import type { Study } from '$models/Study.interface';
 
-	import PublicPagesLayout from '$components/shared/PublicPagesLayout.svelte';
+	import PublicPagesLayout from '$components/layouts/PublicPagesLayout.svelte';
 	import StudyItem from '$components/shared/StudyItem.svelte';
 
 	export let data: PageData;
