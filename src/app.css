@@ -101,7 +101,8 @@ textarea.form-control:focus button {
 }
 
 .formgroup input,
-.formgroup textarea {
+.formgroup textarea,
+.formgroup select {
 	@apply w-full rounded-md border border-primary/60 bg-transparent px-4 py-3 text-base text-white focus:border-primary;
 }
 
@@ -111,12 +112,15 @@ textarea.form-control:focus button {
 
 .formgroup input:focus + span,
 .formgroup input:not(:placeholder-shown) + span,
+.formgroup select:focus + span,
+.formgroup select:not(:placeholder-shown) + span,
 .formgroup textarea:focus + span,
 .formgroup textarea:not(:placeholder-shown) + span {
 	@apply top-[-0.2rem] rounded-sm bg-primary text-background;
 }
 
 .formgroup input::placeholder,
+.formgroup select::placeholder,
 .formgroup textarea::placeholder {
 	@apply text-transparent;
 }
