@@ -11,19 +11,15 @@
 		switch (actionButton) {
 			case 'add':
                 icon = MajesticonsPlus;
-				console.log(actionButton);
 				return 'primary';
 			case 'refresh':
                 icon = MajesticonsReload;
-				console.log(actionButton);
 				return 'secondary';
 			case 'back':
                 icon = MajesticconsArrowLeft;
-				console.log(actionButton);
 				return 'light';
 			default:
                 icon = MajesticonsPlus;
-				console.log(actionButton);
 				return 'primary';
 		}
 	};

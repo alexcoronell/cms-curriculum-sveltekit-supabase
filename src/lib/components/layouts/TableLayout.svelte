@@ -21,7 +21,7 @@
 			<CircleButton classes="md:h-fit lg:hidden" actionButton="refresh" />
 			<Button classes="md:h-fit max-lg:hidden w-[120px]" variant="primary">Add</Button>
 			<Button classes="md:h-fit max-lg:hidden w-[120px]" variant="secondary">Refresh</Button>
-            <CircleButtonBack  classes="md:h-fit md:hidden" />
+			<CircleButtonBack classes="md:h-fit md:hidden" />
 		</div>
 		<div class="TableLayout__navigation">
 			<Select
@@ -34,28 +34,31 @@
 			<ButtonBack classes="max-md:hidden w-[120px]" />
 		</div>
 	</div>
-	<slot />
-	<div class="TableLayout__pagination">
-        Pagination
-    </div>
+	<div class="TableLayout__content">
+		<slot />
+	</div>
+	<div class="TableLayout__pagination">Pagination</div>
 </div>
 
 <style>
 	.TableLayout {
-        @apply w-full py-0;
+		@apply w-full py-0;
 	}
-    .TableLayout__header {
-        @apply w-full grid grid-cols-2 gap-0;
-    }
-    .TableLayout__actions {
-        @apply md:flex md:justify-start gap-3;
-    }
-    .TableLayout__navigation {
-        @apply md:flex md:justify-end gap-3;
-    }
+	.TableLayout__header {
+		@apply grid w-full grid-cols-2 gap-0;
+	}
+	.TableLayout__actions {
+		@apply gap-3 md:flex md:justify-start;
+	}
+	.TableLayout__navigation {
+		@apply gap-3 md:flex md:justify-end;
+	}
+	
+	.TableLayout__content {
+		@apply w-full p-3 mb-6 overflow-hidden rounded-xl;
+	}
 
-    .TableLayout__pagination {
-        @apply py-3 rounded-xl border border-primary flex items-center justify-center;
-    }
-    
+	.TableLayout__pagination {
+		@apply flex items-center justify-center rounded-xl border border-primary py-3;
+	}
 </style>

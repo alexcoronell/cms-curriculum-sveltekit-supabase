@@ -15,20 +15,34 @@ class WorkService implements IBaseService<Work> {
 	private tableBucketName = 'works';
 	private service = new ImagesService();
 
-	getAll = async (from?: number, to?: number) => {
+	getAllSimple = async(from: number = 0, to: number = 10) => {
 		try {
 			const { data, count, error } = await this.supabase
 				.from(this.table)
 				.select('*', { count: 'exact' })
 				.order('order', { ascending: false })
-				.range(from || 0, to || 100000);
+				.range(from, to);
+			if (error) throw new Error(error.message);
+			return { data: data, count: count as number, error: false, message: 'Success' };
+		} catch (error) {
+			console.error(error);
+			return { data: [], count: 0, error: true, message: 'Something went wrong' };
+		}
+	}
+
+	getAll = async () => {
+		try {
+			const { data, count, error } = await this.supabase
+				.from(this.table)
+				.select('*', { count: 'exact' })
+				.order('order', { ascending: false })
 			if (error) throw new Error(error.message);
 			const works: Promise<Work>[] = data.map(async (work) => {
 				work.image = await this.service.get(this.tableBucketName, work.image);
 				return work;
 			});
 			const dataWorks: Work[] = await Promise.all(works);
-			return { data: dataWorks, count: count as number };
+			return { data: dataWorks, count: count as number, error: false, message: 'Success' };
 		} catch (error) {
 			console.error(error);
 			return { data: [], count: 0, error: true, message: 'Something went wrong' };

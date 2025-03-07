@@ -18,6 +18,7 @@ const config = {
 			$interfaces: './src/lib/core/interfaces',
 			$models: './src/lib/core/models',
 			$services: './src/lib/core/services',
+			$stores: './src/lib/stores',
 			$supabase: './src/lib/supabase',
 			$utils: './src/lib/core/utils'
 		},
