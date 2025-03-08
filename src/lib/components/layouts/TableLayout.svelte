@@ -12,6 +12,7 @@
 		{ value: '100', label: '100' },
 		{ value: null, label: 'All' }
 	];
+	export let colums: string[] = []
 </script>
 
 <div class="TableLayout">
@@ -35,7 +36,19 @@
 		</div>
 	</div>
 	<div class="TableLayout__content">
-		<slot />
+		<table>
+			<thead>
+				<tr>
+					{#each colums as colum }
+						<td>{colum}</td>
+					{/each}
+					<td>Actions</td>
+				</tr>
+			</thead>
+			<tbody>
+				<slot />
+			</tbody>
+		</table>
 	</div>
 	<div class="TableLayout__pagination">Pagination</div>
 </div>
