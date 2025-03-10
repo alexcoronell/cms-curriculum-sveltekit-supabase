@@ -9,43 +9,45 @@ import type { Work } from '$models/Work.interface';
 /* Services */
 import WorkService from '$services/Work.service';
 
-const createWorkStore = () => {
-	const { subscribe, set, update } = writable<Result<Work>>({
-		data: [],
-		count: 0,
-		loading: false,
-		error: false,
-		message: ''
-	});
-	const pages = writable<number>(0);
-	const currentPage = writable<number>(1);
-	let limit = writable<number>(10);
+/* Helpers */
+import { getPagination } from '$lib/core/helpers/getPagination.helper';
 
-	const service = new WorkService();
+const limitStore = writable<number>(5);
+const totalItemsStore = writable<number>(0);
+const currentPageStore = writable<number>(1);
+const pagesStore = writable<number>(0);
+const worksStore = writable<Work[]>([]);
+const errorStore = writable<boolean>(false);
+const loadingStore = writable<boolean>(false);
+const messageStore = writable<string>('');
+const service = new WorkService();
 
-	return {
-		subscribe,
-		loadWorks: async (from: number = 0, to: number = 10) => {
-			set({
-				data: [],
-				count: 0,
-				loading: true,
-				error: false,
-				message: ''
-			});
-			const { data, count, error, message } = await service.getAllSimple(from, to);
-			const limitValue = get(limit)
-			const totalPages = Math.ceil(count / limitValue);
-			pages.set(totalPages);
-			set({
-				data,
-				count,
-				loading: false,
-				error,
-				message
-			});
-		}
-	};
+const getWorks = async () => {
+	loadingStore.set(true);
+	const limit = get(limitStore);
+	const { from, to } = getPagination(get(currentPageStore), limit);
+	const {
+		data,
+		count,
+		error: serviceError,
+		message: serviceMessage
+	} = await service.getAllSimple(from, to);
+	worksStore.set(data);
+	pagesStore.set(Math.ceil(count / limit));
+	errorStore.set(serviceError || false);
+	loadingStore.set(false);
+	messageStore.set(serviceMessage);
+	totalItemsStore.set(count);
 };
 
-export const WorksStore = createWorkStore();
+export {
+	limitStore,
+	currentPageStore,
+	pagesStore,
+	worksStore,
+	errorStore,
+	loadingStore,
+	messageStore,
+	getWorks,
+	totalItemsStore
+};
