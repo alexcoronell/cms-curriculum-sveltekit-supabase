@@ -18,7 +18,13 @@
 		loadingStore,
 		errorStore,
 		getWorks,
-		totalItemsStore
+		totalItemsStore,
+		onFirstPage,
+		onPreviousPage,
+		onNextPage,
+		onLastPage,
+		currentPageStore,
+		pagesStore
 	} from '$stores/WorksStore';
 
 	/* Helpers */
@@ -30,11 +36,15 @@
 	let error: boolean = false;
 	let totalItems: number = 0;
 	let optionsSelect: { value: string | number | null; label: string }[] = [];
+	let currentPage: number = 1;
+	let pages: number = 0;
 
 	limitStore.subscribe((value) => (limit = value));
 	loadingStore.subscribe((value) => (loading = value));
 	worksStore.subscribe((value) => (works = value));
 	errorStore.subscribe((value) => (error = value));
+	currentPageStore.subscribe((value) => (currentPage = value));
+	pagesStore.subscribe((value) => (pages = value));
 	totalItemsStore.subscribe((value) => {
 		totalItems = value;
 		optionsSelect = updateOptionsLimit(totalItems);
@@ -54,7 +64,19 @@
 	getWorks();
 </script>
 
-<TableLayout {colums} limit={limitStore} refreshFunction={getWorks} {optionsSelect}>
+<TableLayout
+	{colums}
+	limit={limitStore}
+	refreshFunction={getWorks}
+	{optionsSelect}
+	{pages}
+	{currentPage}
+	{onFirstPage}
+	{onPreviousPage}
+	{onNextPage}
+	{onLastPage}
+	{totalItems}
+>
 	{#if loading}
 		<tr> <td colspan={colums.length + 1}>Loading... </td></tr>
 	{:else if error}
@@ -64,33 +86,33 @@
 	{:else}
 		{#each works as work}
 			<tr>
-				<td>{work.title}</td>
+				<td class="min-w-[300px]">{work.title}</td>
 				<td
 					>{#if work.url}
 						<MajesticonsLink />
 					{/if}</td
 				>
-				<td
+				<td class="text-center"
 					>{#if work.repoUrl}
 						<MajesticonsLink />
 					{/if}</td
 				>
-				<td
+				<td class="text-center"
 					>{#if work.originRepo === 'Github'}
 						<BlxGithub />
 					{:else if work.originRepo === 'Gitlab'}
 						<BlxGitlab />
 					{/if}</td
 				>
-				<td>{work.publicRepo}</td>
-				<td
+				<td class="text-center">{work.publicRepo}</td>
+				<td class="text-center"
 					>{#if work.image}
 						<MajesticonsImage />
 					{/if}</td
 				>
-				<td>{work.status}</td>
-				<td>{work.technologies}</td>
-				<td class="actions">
+				<td class="text-center">{work.status}</td>
+				<td class="overflow-hidden text-wrap">{work.technologies}</td>
+				<td class="rowActions">
 					<MajesticonsEye />
 					<MajesticonsDelete />
 				</td>

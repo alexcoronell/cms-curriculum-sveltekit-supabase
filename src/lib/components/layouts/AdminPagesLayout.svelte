@@ -2,16 +2,16 @@
 	export let title: string = '';
 </script>
 
-<main class="AdminPageLayout">
+<div class="AdminPageLayout">
 	<h2 class="AdminPageLayout__title">{title}</h2>
 	<section class="AdminPageLayout__content no-scrollbar">
 		<slot />
 	</section>
-</main>
+</div>
 
 <style>
 	.AdminPageLayout {
-		@apply flex h-full w-full flex-col items-center gap-y-6 px-6;
+		@apply flex h-full w-full flex-col items-center gap-y-6 px-6 py-[70px];
 	}
 
 	.AdminPageLayout__title {

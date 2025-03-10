@@ -26,6 +26,9 @@ const getWorks = async () => {
 	loadingStore.set(true);
 	const limit = get(limitStore);
 	const { from, to } = getPagination(get(currentPageStore), limit);
+	if(from > get(totalItemsStore)) {
+		onFirstPage();
+	}
 	const {
 		data,
 		count,
@@ -40,6 +43,27 @@ const getWorks = async () => {
 	totalItemsStore.set(count);
 };
 
+const onFirstPage = () => {	
+	currentPageStore.set(1);
+	getWorks();
+};
+
+const onPreviousPage = () => {
+	currentPageStore.update((value) => value - 1);
+	getWorks();
+};
+
+const onNextPage = () => {
+	currentPageStore.update((value) => value + 1);
+	getWorks();
+};
+
+const onLastPage = () => {
+	currentPageStore.set(get(pagesStore));
+	getWorks();
+};
+
+
 export {
 	limitStore,
 	currentPageStore,
@@ -49,5 +73,9 @@ export {
 	loadingStore,
 	messageStore,
 	getWorks,
-	totalItemsStore
+	totalItemsStore,
+	onFirstPage,
+	onPreviousPage,
+	onNextPage,
+	onLastPage
 };

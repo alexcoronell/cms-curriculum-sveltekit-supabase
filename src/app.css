@@ -150,3 +150,25 @@ textarea.form-control:focus button {
 .profileImage {
 	mask-image: linear-gradient(black 75%, transparent);
 }
+
+
+/***************************** Table Styles *****************************/
+/**
+ * Table td styles
+ *
+ * This class will apply styles to a table cell `<td>`.
+ *
+ * The styles include:
+ * - horizontal padding of 3px
+ * - vertical padding of 4px
+ * - border at the bottom using the primary color with 30% opacity
+ *
+ * Use this class to apply the styles to a table cell.
+ */
+table tr td {
+	@apply px-3 py-4 border-b border-primary/30;
+}
+
+table .rowActions {
+	@apply flex gap-3 h-full;
+}
