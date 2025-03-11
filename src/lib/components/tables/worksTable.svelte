@@ -7,7 +7,7 @@
 	import MajesticonsImage from '$components/ui/icons/MajesticonsImage.svelte';
 	import MajesticonsEye from '$components/ui/icons/MajesticonsEye.svelte';
 	import MajesticonsDelete from '$components/ui/icons/MajesticonsDelete.svelte';
-
+	
 	/* Models */
 	import type { Work } from '$models/Work.interface';
 

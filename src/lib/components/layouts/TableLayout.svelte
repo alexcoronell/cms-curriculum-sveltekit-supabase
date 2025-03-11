@@ -4,6 +4,11 @@
 	import ButtonBack from '$lib/components/ui/buttons/ButtonBack.svelte';
 	import SelectLimit from '$components/ui/form/SelectLimit.svelte';
 	import CircleButtonBack from '$lib/components/ui/buttons/CircleButtonBack.svelte';
+	import MajesticonsChevronLeftLine from '$components/ui/icons/MajesticonsChevronLeftLine.svelte';
+	import MajesticonsChevronRightLine from '$components/ui/icons/MajesticonsChevronRightLine.svelte';
+	import MajesticonsForwardEndCircleLine from '$components/ui/icons/MajesticonsForwardEndCircleLine.svelte';
+	import MajesticonsBackwardStartCircleLine from '$components/ui/icons/MajesticonsBackwardStartCircleLine.svelte';
+
 	import type { Writable } from 'svelte/store';
 	export let colums: string[] = [];
 	export let limit: Writable<number>;
@@ -20,7 +25,7 @@
 
 <div class="TableLayout">
 	<div class="TableLayout__header">
-		<div class="TableLayout__actions">
+		<div class="TableLayout__headerActions">
 			<CircleButton classes="md:h-fit lg:hidden" actionButton="add" />
 			<CircleButton
 				classes="md:h-fit lg:hidden"
@@ -31,11 +36,11 @@
 			<Button classes="md:h-fit max-lg:hidden w-[120px]" variant="secondary">Refresh</Button>
 			<CircleButtonBack classes="md:h-fit md:hidden" />
 		</div>
-		<div class="TableLayout__navigation">
+		<div class="TableLayout__headerNavigation">
 			<SelectLimit
 				name="itemsPerPage"
 				limitStore={limit}
-				classes="max-w-[150px]"
+				classes="max-w-[150px] translate-y-3"
 				{refreshFunction}
 				{optionsSelect}
 			/>
@@ -58,13 +63,41 @@
 		</table>
 	</div>
 	<div class="TableLayout__pagination">
-		<span class="TableLayout__totalItems">TotalItems: {totalItems}</span>
-		<button disabled={currentPage === 1} on:click={onFirstPage}>First Page</button>
-		<button disabled={currentPage === 1} on:click={onPreviousPage}>Previous</button>
-		<span class="TableLayout__currentPage">{currentPage}</span>
-		<button disabled={currentPage === pages} on:click={onNextPage}>Next</button>
-		<button disabled={currentPage === pages} on:click={onLastPage}>Last Page</button>
-		<span class="TableLayout__totalPages">TotalPages: {pages}</span>
+		<div class="TableLayout__paginationButtons">
+			<button
+				class="TableLayout__paginationButton"
+				disabled={currentPage === 1}
+				on:click={onFirstPage}
+				><MajesticonsBackwardStartCircleLine class="TableLayout__paginationIcon" />
+				<span>First Page</span></button
+			>
+			<button
+				class="TableLayout__paginationButton"
+				disabled={currentPage === 1}
+				on:click={onPreviousPage}
+				><MajesticonsChevronLeftLine class="TableLayout__paginationIcon" />
+				<span>Previous</span></button
+			>
+			<span class="TableLayout__currentPage">{currentPage}</span>
+			<button
+				class="TableLayout__paginationButton"
+				disabled={currentPage === pages}
+				on:click={onNextPage}
+				><span>Next</span><MajesticonsChevronRightLine
+					class="TableLayout__paginationIcon"
+				/></button
+			>
+			<button
+				class="TableLayout__paginationButton"
+				disabled={currentPage === pages}
+				on:click={onLastPage}
+				><span>Last Page</span><MajesticonsForwardEndCircleLine
+					class="TableLayout__paginationIcon"
+				/></button
+			>
+		</div>
+		<span class="TableLayout__totalItems">Total Items: {totalItems}</span>
+		<span class="TableLayout__totalPages">Total Pages: {pages}</span>
 	</div>
 </div>
 
@@ -73,37 +106,45 @@
 		@apply min-w-full py-0;
 	}
 
-	/* .TableLayout__table {
-		@apply border border-primary/50;
-	} */
-
-	.TableLayout__table thead {
-		@apply border-b border-primary/50 w-full;
-	}
-
-	.TableLayout__table th {
-		@apply py-3 px-3 text-primary;
-	}
 	.TableLayout__header {
-		@apply grid w-full grid-cols-2 gap-0;
+		@apply grid w-full grid-cols-2 items-center gap-0;
 	}
 
-	.TableLayout__header th {
-		@apply min-w-[75px];
+	.TableLayout__headerActions,
+	.TableLayout__headerNavigation {
+		@apply flex items-center gap-1;
 	}
-	.TableLayout__actions {
-		@apply gap-3 md:flex md:justify-start;
-	}
-	.TableLayout__navigation {
-		@apply gap-3 md:flex md:justify-end;
+
+	.TableLayout__headerNavigation {
+		@apply justify-end pb-0 md:flex md:gap-3;
 	}
 
 	.TableLayout__content {
 		@apply mb-6 w-full overflow-hidden rounded-xl p-3;
 	}
 
+	.TableLayout__table thead {
+		@apply w-full border-b border-primary/50;
+	}
+
+	.TableLayout__header th {
+		@apply min-w-[75px] px-3 py-3 text-primary;
+	}
+
 	.TableLayout__pagination {
-		@apply relative flex items-center justify-center rounded-xl border border-primary py-3 gap-3;
+		@apply relative rounded-xl border border-primary py-3;
+	}
+
+	.TableLayout__paginationButtons {
+		@apply relative flex items-center justify-center gap-6;
+	}
+
+	.TableLayout__paginationButton {
+		@apply flex items-center gap-1;
+	}
+
+	.TableLayout__paginationButton span {
+		@apply max-xl:hidden;
 	}
 
 	.TableLayout__pagination button:disabled {
@@ -111,11 +152,16 @@
 	}
 
 	.TableLayout__currentPage {
-		@apply font-bold mx-3;
+		@apply mx-3 font-bold;
+	}
+
+	.TableLayout__totalItems,
+	.TableLayout__totalPages {
+		@apply max-md:mt-6 max-md:inline-block md:absolute md:top-3;
 	}
 
 	.TableLayout__totalItems {
-		@apply absolute left-3;
+		@apply px-3 text-left md:absolute md:left-3;
 	}
 
 	.TableLayout__totalPages {
@@ -123,6 +169,6 @@
 	}
 
 	.TableLayout td {
-		@apply px-3 border;
+		@apply border px-3;
 	}
 </style>
