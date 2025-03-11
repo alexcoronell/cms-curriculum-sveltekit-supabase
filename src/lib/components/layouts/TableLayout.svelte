@@ -10,7 +10,7 @@
 	import MajesticonsBackwardStartCircleLine from '$components/ui/icons/MajesticonsBackwardStartCircleLine.svelte';
 
 	import type { Writable } from 'svelte/store';
-	export let colums: string[] = [];
+	export let colums: {classes: string, title: string}[] = [];
 	export let limit: Writable<number>;
 	export let optionsSelect: { value: string | number | null; label: string }[] = [];
 	export let refreshFunction: () => Promise<void>;
@@ -49,10 +49,10 @@
 	</div>
 	<div class="TableLayout__content">
 		<table class="TableLayout__table">
-			<thead>
+			<thead class="TableLayout__tableHead">
 				<tr>
 					{#each colums as colum}
-						<th>{colum}</th>
+						<th class={colum.classes}>{colum.title}</th>
 					{/each}
 					<th class="TableLayout__rowActions">Actions</th>
 				</tr>
@@ -123,12 +123,20 @@
 		@apply mb-6 w-full overflow-hidden rounded-xl p-3;
 	}
 
-	.TableLayout__table thead {
+	.TableLayout__table {
+		@apply w-full;
+	}
+
+	.TableLayout__tableHead {
 		@apply w-full border-b border-primary/50;
 	}
 
-	.TableLayout__header th {
+	.TableLayout__tableHead th {
 		@apply min-w-[75px] px-3 py-3 text-primary;
+	}
+
+	.TableLayout__rowActions {
+		@apply flex items-center justify-center;
 	}
 
 	.TableLayout__pagination {

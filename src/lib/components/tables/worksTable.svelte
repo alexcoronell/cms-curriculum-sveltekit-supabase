@@ -7,7 +7,7 @@
 	import MajesticonsImage from '$components/ui/icons/MajesticonsImage.svelte';
 	import MajesticonsEye from '$components/ui/icons/MajesticonsEye.svelte';
 	import MajesticonsDelete from '$components/ui/icons/MajesticonsDelete.svelte';
-	
+
 	/* Models */
 	import type { Work } from '$models/Work.interface';
 
@@ -51,14 +51,14 @@
 	});
 
 	const colums = [
-		'Title',
-		'Url',
-		'UrlRepo',
-		'ServiceRepo',
-		'PublicRepo',
-		'Image',
-		'Status',
-		'Technologies'
+		{ classes: 'text-left w-auto', title: 'Title' },
+		{ classes: 'max-xl:hidden', title: 'Url' },
+		{ classes: 'max-xl:hidden', title: 'UrlRepo' },
+		{ classes: 'max-lg:hidden', title: 'ServiceRepo' },
+		{ classes: 'max-lg:hidden', title: 'PublicRepo' },
+		{ classes: 'max-lg:hidden', title: 'Image' },
+		{ classes: 'max-md:hidden text-left', title: 'Status' },
+		{ classes: 'max-3xl:hidden', title: 'Technologies' }
 	];
 
 	getWorks();
@@ -86,37 +86,70 @@
 	{:else}
 		{#each works as work}
 			<tr>
-				<td class="min-w-[300px]">{work.title}</td>
-				<td
-					>{#if work.url}
-						<MajesticonsLink />
-					{/if}</td
-				>
-				<td class="text-center"
-					>{#if work.repoUrl}
-						<MajesticonsLink />
-					{/if}</td
-				>
-				<td class="text-center"
-					>{#if work.originRepo === 'Github'}
-						<BlxGithub />
-					{:else if work.originRepo === 'Gitlab'}
-						<BlxGitlab />
-					{/if}</td
-				>
-				<td class="text-center">{work.publicRepo}</td>
-				<td class="text-center"
-					>{#if work.image}
-						<MajesticonsImage />
-					{/if}</td
-				>
-				<td class="text-center">{work.status}</td>
-				<td class="overflow-hidden text-wrap">{work.technologies}</td>
+				<!-- Title -->
+				<td class="w-auto">{work.title}</td>
+
+				<!-- Url -->
+				<td class="text-center max-xl:hidden">
+					<p class="center">
+						{#if work.url}
+							<MajesticonsLink />
+						{/if}
+					</p>
+				</td>
+
+				<!-- RepoUrl -->
+				<td class="text-center max-xl:hidden">
+					<p class="center">
+						{#if work.repoUrl}
+							<MajesticonsLink />
+						{/if}
+					</p>
+				</td>
+
+				<!-- ServiceRepo -->
+				<td class="max-lg:hidden">
+					<p class="center">
+						{#if work.originRepo === 'Github'}
+							<BlxGithub />
+						{:else if work.originRepo === 'Gitlab'}
+							<BlxGitlab />
+						{/if}
+					</p>
+				</td>
+
+				<!-- PublicRepo -->
+				<td class="text-center max-lg:hidden">{work.publicRepo}</td>
+
+				<!-- Image -->
+				<td class="max-lg:hidden">
+					<p class="center">
+						{#if work.image}
+							<MajesticonsImage />
+						{/if}
+					</p>
+				</td>
+
+				<!-- Status -->
+				<td class="max-md:hidden">{work.status}</td>
+
+				<!-- Technologies -->
+				<td class="max-3xl:hidden overflow-hidden text-wrap">{work.technologies}</td>
 				<td class="rowActions">
-					<MajesticonsEye />
-					<MajesticonsDelete />
+					<button class="text-primary">
+						<MajesticonsEye />
+					</button>
+					<button class="text-red">
+						<MajesticonsDelete />
+					</button>
 				</td>
 			</tr>
 		{/each}
 	{/if}
 </TableLayout>
+
+<style>
+	.center {
+		@apply flex items-center justify-center;
+	}
+</style>
