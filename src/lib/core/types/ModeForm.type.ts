@@ -1,0 +1,1 @@
+export type ModeForm = 'create' | 'edit' | 'detail';
