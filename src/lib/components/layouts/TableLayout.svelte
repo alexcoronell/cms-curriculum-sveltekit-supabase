@@ -10,11 +10,12 @@
 	import MajesticonsBackwardStartCircleLine from '$components/ui/icons/MajesticonsBackwardStartCircleLine.svelte';
 
 	import type { Writable } from 'svelte/store';
-	export let colums: {classes: string, title: string}[] = [];
+	export let colums: { classes: string; title: string }[] = [];
 	export let limit: Writable<number>;
 	export let optionsSelect: { value: string | number | null; label: string }[] = [];
 	export let refreshFunction: () => Promise<void>;
 	export let pages: number = 0;
+	export let createUrl: string = 'create';
 	export let currentPage: number = 1;
 	export let totalItems: number = 0;
 	export let onFirstPage: () => void;
@@ -26,13 +27,15 @@
 <div class="TableLayout">
 	<div class="TableLayout__header">
 		<div class="TableLayout__headerActions">
-			<CircleButton classes="md:h-fit lg:hidden" actionButton="add" />
+			<a href={createUrl}>
+				<CircleButton classes="md:h-fit lg:hidden" actionButton="add" />
+				<Button classes="md:h-fit max-lg:hidden w-[120px]" variant="primary">Add</Button>
+			</a>
 			<CircleButton
 				classes="md:h-fit lg:hidden"
 				actionButton="refresh"
 				on:click={refreshFunction}
 			/>
-			<Button classes="md:h-fit max-lg:hidden w-[120px]" variant="primary">Add</Button>
 			<Button classes="md:h-fit max-lg:hidden w-[120px]" variant="secondary">Refresh</Button>
 			<CircleButtonBack classes="md:h-fit md:hidden" />
 		</div>

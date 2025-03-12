@@ -61,6 +61,8 @@
 		{ classes: 'max-3xl:hidden', title: 'Technologies' }
 	];
 
+	const baseRoute = '/admin/portfolio';
+
 	getWorks();
 </script>
 
@@ -76,6 +78,7 @@
 	{onNextPage}
 	{onLastPage}
 	{totalItems}
+	createUrl={`${baseRoute}/create`}
 >
 	{#if loading}
 		<tr> <td colspan={colums.length + 1}>Loading... </td></tr>
@@ -134,11 +137,13 @@
 				<td class="max-md:hidden">{work.status}</td>
 
 				<!-- Technologies -->
-				<td class="max-3xl:hidden overflow-hidden text-wrap">{work.technologies}</td>
+				<td class="overflow-hidden text-wrap max-3xl:hidden">{work.technologies}</td>
 				<td class="rowActions">
-					<button class="text-primary">
-						<MajesticonsEye />
-					</button>
+					<a href={`${baseRoute}/details/${work.id}`}>
+						<button class="text-primary">
+							<MajesticonsEye />
+						</button>
+					</a>
 					<button class="text-red">
 						<MajesticonsDelete />
 					</button>
