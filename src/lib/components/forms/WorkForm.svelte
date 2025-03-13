@@ -12,7 +12,13 @@
     import type { OriginRepo } from '$lib/core/types/OriginRepo.type';
     import type { StatusWork } from '$lib/core/types/StatusWork.type';
 
+    /* Data */
+    import { skillOptions } from '$data/skills.data';
+
     export let id: string | null = null;
+
+
+    let skillTemp: string = '';
 
     $: title = id ? `Edit Work` : 'Create Work';
     $: mode = id ? 'detail' : 'create' as ModeForm;
@@ -27,19 +33,37 @@
         image: '',
         order: 0,
         status: undefined,
-        technologies: '',
+        technologies: ['HTML', 'CSS', 'Javascript'],
     };
 
-    const originRepoOptions: { value: OriginRepo; label: string }[] = [
-        { value: 'Github', label: 'Github' },
-        { value: 'Gitlab', label: 'Gitlab' },
-    ];
+    const originRepoOptions: OriginRepo[] = ['Github', 'Gitlab']
+    const statusWorkOptions: StatusWork[] = ['Active', 'Inactive', 'Developing'];
 
-    const statusWorkOptions: { value: StatusWork; label: string }[] = [
-        { value: 'Active', label: 'Active' },
-        { value: 'Inactive', label: 'Inactive' },
-        { value: 'Developing', label: 'Developing' },
-    ];
+    let filteredSkillOptions: string[] = []
+
+    const filterOptions = () => {
+        filteredSkillOptions = skillOptions.filter((skill) => !work.technologies.includes(skill));
+    }
+
+    filterOptions();
+
+    const handleAddSkill = () => {
+        console.log('AddSkill');
+        
+        if (skillTemp) {
+            work.technologies.push(skillTemp);
+            skillTemp = '';
+            filterOptions();
+        }
+        console.log(work.technologies);
+        
+    };
+
+    const handleRemoveSkill = (skill: string) => {
+        work.technologies = work.technologies.filter((s) => s !== skill);
+        filterOptions();
+    };
+
 
 </script>
 
@@ -53,9 +77,13 @@
             <Select name="originRepo" optionsSelect={originRepoOptions} label="Origin Repository" />
         </div>
         <div class="WorkForm__section2">
-            <Select name="statusWork" optionsSelect={originRepoOptions} label="Status" />
-            <Select name="technologies" optionsSelect={[]} label="Technologies" />
-            <TextArea name="detailTechnologies" label="Detail Technologies" />
+            <Select name="statusWork" optionsSelect={statusWorkOptions} label="Status" />
+            <Select name="technologies" on:change={handleAddSkill} bind:value={skillTemp} optionsSelect={filteredSkillOptions} label="Technologies" />
+            <div class="WorkForm__technologies border border-primary min-h-[100px] rounded-xl">
+                {#each work.technologies as skill}
+                    <button class="WorkForm__skill" on:click={() => handleRemoveSkill(skill)}>{skill}</button>
+                {/each}
+            </div>
         </div>
         <div>
             <p>Public repository</p>

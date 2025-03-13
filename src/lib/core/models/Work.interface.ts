@@ -11,5 +11,5 @@ export interface Work {
     image: string;
     order: number;
     status: StatusWork | undefined;
-    technologies: string;
+    technologies: string[];
 }
